@@ -4,3 +4,7 @@
 *.bak
 .vs/
 .vscode/
+
+# User-specific settings and backups
+viewers.xml
+before.xml

@@ -98,13 +98,16 @@ namespace SLViewerAssociation {
     }k.DeleteSubKeyTree(@"shell\open\ddeexec",false);
    }
   }
-  public static void Apply(string viewer){
-   string file=Validate(viewer),command=Command(file);var before=Snapshot();
+  public static string HandlerCommand(){return "\""+typeof(Association).Assembly.Location+"\" --open \"%1\"";}
+  public static void RegisterHandler(){ApplyCommand(typeof(Association).Assembly.Location,HandlerCommand());}
+  public static void Apply(string viewer){string file=Validate(viewer);ApplyCommand(file,Command(file));}
+  static void ApplyCommand(string file,string command){
+   var before=Snapshot();
    if(Owned()){if(!File.Exists(BackupFile))throw new InvalidOperationException("復元用バックアップが見つかりません。");}else SaveBackup(before);
    try{
     SetProtocol(Protocol,command,file);SetProtocol(@"Software\Classes\"+ProgId,command,file);
     using(var k=Registry.CurrentUser.CreateSubKey(App+@"\Capabilities")){
-     k.SetValue("ApplicationName","Second Life ビューアー（選択済み）");k.SetValue("ApplicationDescription","設定したビューアーでSecond Lifeのリンクを開きます。");
+     k.SetValue("ApplicationName","SLViewerAssociation（ビューアー選択）");k.SetValue("ApplicationDescription","設定したビューアーでSecond Lifeのリンクを開きます。");
      using(var urls=k.CreateSubKey("URLAssociations"))urls.SetValue("secondlife",ProgId);
     }
     using(var k=Registry.CurrentUser.CreateSubKey(@"Software\RegisteredApplications"))k.SetValue("SLViewerAssociation",App+@"\Capabilities");
@@ -128,5 +131,3 @@ namespace SLViewerAssociation {
   public static void OpenDefaults(){Process.Start("ms-settings:defaultapps");}
  }
 }
-
-
