@@ -1,0 +1,6 @@
+# Local build output and editor files
+*.pdb
+*.tmp
+*.bak
+.vs/
+.vscode/
