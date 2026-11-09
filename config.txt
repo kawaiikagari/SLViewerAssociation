@@ -1,0 +1,5 @@
+;!@Install@!UTF-8!
+Title="SLViewerAssociation セットアップ"
+BeginPrompt="SLViewerAssociation をインストールしますか？"
+RunProgram="install.bat"
+;!@InstallEnd@!
