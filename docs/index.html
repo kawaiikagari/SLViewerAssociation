@@ -106,6 +106,20 @@
             color: #0d1117;
         }
 
+        .links-row {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .links-row a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .links-row a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             text-align: center;
             color: #8b949e;
@@ -126,8 +140,10 @@
             <h2>📥 最新版のダウンロード</h2>
             <p>以下のボタンからインストーラーをダウンロードできます。</p>
             <div class="download-box">
-                <!-- docsフォルダから見たルート直下のexeへの相対パス -->
                 <a href="SLViewerAssociation_Setup.exe" class="btn">インストーラーをダウンロード (EXE)</a>
+            </div>
+            <div class="links-row">
+                <a href="https://github.com/kawaiikagari/SLViewerAssociation" target="_blank" rel="noopener">GitHubリポジトリを見る</a>
             </div>
         </section>
 
@@ -149,8 +165,16 @@
             </ol>
         </section>
 
+        <section class="card">
+            <h2>🛠️ システム要件</h2>
+            <ul>
+                <li><strong>対応OS:</strong> Windows 10 / 11 (64bit)</li>
+                <li><strong>ランタイム:</strong> .NET デスクトップ ランタイム (必要に応じて自動適用)</li>
+            </ul>
+        </section>
+
         <footer>
-            <p>&copy; 2026 kawaiikagari / SLViewerAssociation[cite: 1, 2]</p>
+            <p>&copy; 2026 kawaiikagari / SLViewerAssociation</p>
         </footer>
     </div>
 
