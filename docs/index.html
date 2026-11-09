@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLViewerAssociation - 設定パネル</title>
+    <title>SLViewerAssociation - Second Life Viewer Utility</title>
     <style>
         :root {
             --bg-color: #0d1117;
@@ -13,7 +13,6 @@
             --accent-color: #58a6ff;
             --accent-hover: #1f6feb;
             --border-color: #30363d;
-            --input-bg: #0d1117;
         }
 
         * {
@@ -26,157 +25,92 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
-            padding: 2rem 1rem;
+            line-height: 1.6;
+            padding: 3rem 1rem;
         }
 
         .container {
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         h1 {
             color: var(--heading-color);
-            font-size: 2rem;
-            margin-bottom: 0.3rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         p.subtitle {
             color: #8b949e;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
-        /* アプリのキャンバス（操作パネル）風の枠組み */
-        .app-canvas {
+        .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
-        .section-title {
+        h2 {
             color: var(--heading-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.5rem;
         }
 
-        /* ビューアーリストボックス */
-        .viewer-list {
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            height: 160px;
-            overflow-y: auto;
-            padding: 0.5rem;
+        ul, ol {
+            margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .viewer-item {
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            margin-bottom: 0.3rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        li {
+            margin-bottom: 0.5rem;
         }
 
-        .viewer-item:hover {
-            background-color: rgba(88, 166, 255, 0.1);
+        code {
+            background-color: rgba(110, 118, 129, 0.4);
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
         }
 
-        .viewer-item.active {
-            background-color: rgba(88, 166, 255, 0.2);
-            border: 1px solid var(--accent-color);
-        }
-
-        .viewer-name {
-            font-weight: bold;
-            color: var(--heading-color);
-        }
-
-        .viewer-path {
-            font-size: 0.8rem;
-            color: #8b949e;
-        }
-
-        /* ラジオボタン・チェックボックスエリア */
-        .options-group {
-            margin: 1rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        /* ボタン類 */
-        .button-row {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
+        .download-box {
+            text-align: center;
+            margin: 1.5rem 0;
         }
 
         .btn {
-            flex: 1;
-            padding: 0.7rem 1rem;
-            border-radius: 6px;
+            display: inline-block;
+            background-color: var(--accent-hover);
+            color: #ffffff;
             font-weight: bold;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            text-align: center;
             text-decoration: none;
-            font-size: 0.95rem;
+            padding: 0.9rem 2.5rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
             transition: background-color 0.2s;
         }
 
-        .btn-primary {
-            background-color: var(--accent-hover);
-            color: #ffffff;
-            border-color: transparent;
-        }
-
-        .btn-primary:hover {
+        .btn:hover {
             background-color: var(--accent-color);
             color: #0d1117;
-        }
-
-        .btn-secondary {
-            background-color: #21262d;
-            color: var(--text-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: #30363d;
-        }
-
-        .download-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--border-color);
         }
 
         footer {
             text-align: center;
             color: #8b949e;
-            font-size: 0.85rem;
-            margin-top: 2rem;
+            font-size: 0.9rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
@@ -185,55 +119,34 @@
     <div class="container">
         <header>
             <h1>SLViewerAssociation</h1>
-            <p class="subtitle">Second Life ビューアー関連付け管理パネル</p>
+            <p class="subtitle">Second Lifeのリンク（secondlife://）を、好きなビューアーから選んで開くWindows用ユーティリティ</p>
         </header>
 
-        <!-- アプリの操作画面（キャンバス）を模したUI -->
-        <div class="app-canvas">
-            <div class="section-title">登録済みビューアー一覧</div>
-            <div class="viewer-list">
-                <div class="viewer-item active">
-                    <div>
-                        <div class="viewer-name">Firestorm Viewer</div>
-                        <div class="viewer-path">C:\Program Files\Firestorm-Releasex64\firestorm.exe</div>
-                    </div>
-                    <span>[選択中]</span>
-                </div>
-                <div class="viewer-item">
-                    <div>
-                        <div class="viewer-name">Second Life Viewer</div>
-                        <div class="viewer-path">C:\Program Files\SecondLife\SecondLifeViewer.exe</div>
-                    </div>
-                </div>
-                <div class="viewer-item">
-                    <div>
-                        <div class="viewer-name">Alchemy Viewer</div>
-                        <div class="viewer-path">C:\Program Files\Alchemy\alchemy.exe</div>
-                    </div>
-                </div>
+        <section class="card">
+            <h2>📥 最新版のダウンロード</h2>
+            <p>以下のボタンからインストーラーをダウンロードできます。</p>
+            <div class="download-box">
+                <a href="../SLViewerAssociation_Setup.exe" class="btn">インストーラーをダウンロード (EXE)</a>
             </div>
+        </section>
 
-            <div class="section-title">起動モード設定</div>
-            <div class="options-group">
-                <label>
-                    <input type="radio" name="launch_mode" checked> 毎回使用するビューアーを選択する
-                </label>
-                <label>
-                    <input type="radio" name="launch_mode"> 前回選んだビューアーを常に使う
-                </label>
-            </div>
+        <section class="card">
+            <h2>✨ 主な特徴</h2>
+            <ul>
+                <li><strong>自動検出:</strong> 公式ビューアー、Firestorm、Alchemyなどを自動で探してリスト化します。</li>
+                <li><strong>起動モード切替:</strong> 毎回ポップアップから選ぶか、前回選んだビューアーを常に使うかを自由に選択可能。</li>
+                <li><strong>クリーン設計:</strong> 常駐なし・管理者権限不要で、ユーザー環境に安全にセットアップされます。</li>
+            </ul>
+        </section>
 
-            <div class="button-row">
-                <button class="btn btn-secondary">自動で探す</button>
-                <button class="btn btn-secondary">手動で登録</button>
-                <button class="btn btn-primary">選んだ設定を適用</button>
-            </div>
-
-            <div class="download-footer">
-                <p style="margin-bottom: 0.8rem; font-size: 0.9rem;">このツールのインストーラーはこちらから取得できます</p>
-                <a href="../SLViewerAssociation_Setup.exe" class="btn btn-primary" style="display: inline-block; flex: none; width: auto;">インストーラーをダウンロード (EXE)</a>
-            </div>
-        </div>
+        <section class="card">
+            <h2>🚀 導入手順</h2>
+            <ol>
+                <li>上のボタンから <code>SLViewerAssociation_Setup.exe</code> をダウンロードします。</li>
+                <li>ファイルをダブルクリックして実行すると、自動でセットアップが行われツールが起動します。</li>
+                <li>一覧から使用するビューアーを確認し、設定を適用してください。</li>
+            </ol>
+        </section>
 
         <footer>
             <p>&copy; 2026 kawaiikagari / SLViewerAssociation</p>
